@@ -4,7 +4,7 @@ from pathlib import Path
 
 import requests
 import streamlit as st
-import streamlit_authenticator as stauth
+#import streamlit_authenticator as stauth
 from streamlit_lottie import st_lottie
 import pandas as pd
 import altair as alt
@@ -16,38 +16,38 @@ def app():
     
     # --- USER AUTHENTICATION ---
     
-    names = ["Shreyas Nimje"]
-    usernames = ["shreyas"]
+   # names = ["Shreyas Nimje"]
+    #usernames = ["shreyas"]
     
     # load hashed passwords
-    file_path = Path(__file__).parent / "hashed_pw.pkl"
-    with file_path.open("rb") as file:
-        hashed_passwords = pickle.load(file)
+   # file_path = Path(__file__).parent / "hashed_pw.pkl"
+   # with file_path.open("rb") as file:
+       # hashed_passwords = pickle.load(file)
     
-    authenticator = stauth.Authenticate(names, usernames, hashed_passwords,
-        "sales_dashboard", "abcdef", cookie_expiry_days=30)
+    #authenticator = stauth.Authenticate(names, usernames, hashed_passwords,
+       # "sales_dashboard", "abcdef", cookie_expiry_days=30)
     
     
     st.header(' ')
     st.header(' ')
     st.header(' ')
-    col1, col2, col3 = st.columns(3)
-    with col1:
-       st.write(' ')
+   # col1, col2, col3 = st.columns(3)
+    #with col1:
+      # st.write(' ')
     
-    with col2:
-        name, authentication_status, username = authenticator.login("Login", "main")
+   # with col2:
+       # name, authentication_status, username = authenticator.login("Login", "main")
     
-        if authentication_status == False:
-            st.error("Username/password is incorrect")
+       # if authentication_status == False:
+            #st.error("Username/password is incorrect")
     
-        if authentication_status == None:
-            st.warning("Please enter your username and password")
+       # if authentication_status == None:
+           # st.warning("Please enter your username and password")
             
-    with col3:
-       st.write(' ')
+    #with col3:
+      # st.write(' ')
     
-    if authentication_status:
+    #if authentication_status:
         # ---- READ EXCEL ----
         @st.cache
         def load_lottieurl(url):
@@ -127,14 +127,14 @@ def app():
             
             #load data
             if symbol.upper()=='WIPRO':
-                df = pd.read_csv("C:/Users/Shreyas Nimje/stockmarket_project/WIPRO.csv")
+                df = pd.read_csv("WIPRO.csv")
             elif symbol.upper() == 'NTPC':
-                df = pd.read_csv("C:/Users/Shreyas Nimje/stockmarket_project/NTPC.csv")
+                df = pd.read_csv("NTPC.csv")
             elif symbol.upper() == 'ITC':
-                df = pd.read_csv("C:/Users/Shreyas Nimje/stockmarket_project/ITC.csv")
+                df = pd.read_csv("ITC.csv")
                 
             elif symbol.upper() == 'CANARA BANK':
-                df = pd.read_csv("C:/Users/Shreyas Nimje/stockmarket_project/canara.csv")
+                df = pd.read_csv("canara.csv")
             else:
                 df = pd.DataFrame(columns = ['Date','Open','High','Low','Close','No.of Shares','Total Turnover'])
                 
